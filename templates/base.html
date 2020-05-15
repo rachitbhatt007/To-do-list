@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  {%block title%}
+	<title></title>
+  {%endblock title%}
+</head>
+<body class="bg-light">
+	<nav class="navbar navbar-expand-md navbar-white bg-white mb-4">
+  <a class="navbar-brand" href="#"><img src="{%static 'images/logo.jpg'%}" alt="logo">TaskMAte</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'todolist:Todolist'%}">Todolist</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'contact'%}">Contact us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{%url 'about'%}">About us</a>
+      </li>
+    </ul>
+    
+  </div>
+  {%if user.is_authenticated%}
+  <div class="form-inline mt-2 mt-md-0">
+        <h5 style="margin-right: 20px">Welcome ,{{user.username}}</h5>
+      <a href="{%url 'userapp:logout'%}"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button></a>
+    </div>
+  {%else%}
+  <div class="form-inline mt-2 mt-md-0">
+        <h4 style="margin-right: 20px">{{user.username}}</h4>
+      <a style="margin-right: 15px" href="{%url 'userapp:login'%}"><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button></a>
+      <a href="{%url 'userapp:login'%}"><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Register</button></a>
+    </div>
+  {%endif%}
+
+</nav>
+
+{%block body_block%}
+
+
+{%endblock%}
+
+</body>
+</html>

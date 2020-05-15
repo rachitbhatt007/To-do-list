@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{%extends 'base.html'%}
+{%block title%}
+<title>Update</title>
+{%endblock title%}
+{%block body_block%}
+
+<div class="container">
+	{%if taskobj.owner == request.user%}
+	<h1 style="text-align: center;">update your todo element</h1>
+	<form method="POST">
+	{%csrf_token%}
+  <div class="form-group row">
+    <label class="col-lg-2" style="margin-right: 0px;"><h4></h4></label>
+    <input type="text" class="form-control col-8" name="task" placeholder="{{taskobj.task}}" value="{{taskobj.task}}" >
+    <input type="hidden"  name="done"  value="{{taskobj.done}}" >
+  <button type="submit" class="btn btn-primary col-1" style="margin-bottom: 20px;margin-left: 30px">Update</button>
+  </div>
+</form>
+</div>
+</div>
+{%else%}
+	<h5>Access Restricted!!</h5>
+{%endif%}	
+{%endblock%}
